@@ -12,7 +12,7 @@ def autofill(amount): # метод автозаполнения массива �
     list_comprehension = [randint(0,1) for i in range(abs(amount))] # взял по модулю на случай если клиент введёт значение < 0
     return list_comprehension
 
-def whatBiggerAndHowMuch (list): # метод
+def whatBiggerAndHowMuch (list): # метод определения сколько решек и орлов, какие переворачивать
     count0 = 0
     count1 = 0
     for i in list:
