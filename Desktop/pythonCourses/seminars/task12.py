@@ -46,17 +46,18 @@ y = s - x
 
 def setSetSlag():
     global s
-    if (s <= 2000 and s > 1):
-        i = 0
-        for i in range(s):
-            global x
-            temp = slagaemye.add(s-x)
-            x += 1
-            i += 1
-    else:
-        print('что-то не так, брат, проверь какую сумму ввёл')
-        s = int(input("Брат, сумму их еще по-брацки а: "))
-    return slagaemye                
+    global x
+    flag = 0  # локальная вспомогатльная переменная для обрыва цикла while
+    while (flag == 0):
+        if (s <= 2000 and s > 1 and x < s):
+            for i in range(s):
+                temp = slagaemye.add(s-x)
+                x += 1
+            flag = 1             
+            return slagaemye  
+        else:
+            print('что-то не так, брат, проверь какую сумму ввёл')
+            s = int(input("Брат, сумму их еще по-брацки а: "))
 
 # def setSetMnozh():
 #     if (p <= 1000000 and p > 0):
@@ -69,8 +70,8 @@ def setSetSlag():
 #     else:
 #         print('что-то не так, брат, проверь какое произведение ввёл')
 #         p = int(input("Брат, скажи произведение чисел нормально, а: "))
-setSetSlag()
-print(slagaemye)
+
+print(setSetSlag())
 
 # print(mnozhiteli)
 
