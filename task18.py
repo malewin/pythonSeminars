@@ -20,10 +20,16 @@ def autofill(amount, minBorder, maxBorder): # метод автозаполне�
 listOfDiffValue = autofill(n, minRandBorder, maxRandBorder)
 print(f'Ваш изначальный список: {listOfDiffValue}')
 
-def parsing(userList, x):
-    min = abs(i-x)
-    temp1 = abs(userList(i+1) - x)
-    for i in userList:
-        if min < temp1:
-            return i
-        else
+def soluting(list, userNumber):
+    list.sort()
+    minDiff = abs(list[0]-userNumber)
+    result = list[0]
+    for i in list:
+        if abs(i - userNumber) < minDiff:
+            minDiff = i - userNumber
+            result = i
+    return result
+
+print(f'Ближайший элемент из списка к вашему числу это: {soluting(listOfDiffValue, x)}')
+
+    
