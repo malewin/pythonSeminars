@@ -5,23 +5,24 @@
 # Output: a a_1 a_2 b c a_3 a_4 d c_1 d_1 d_2
 # Для решения данной задачи используйте функцию .split()
 
-
-userString = list(input("Введите текст/ строку: ").replace(" ", ''))
-print(userString)
+userString = list(input("Введите текст/ строку: ").replace(" ", '')) # убрал лишние пробелы и перевёл в список (если не убирать пробелы 
+print(userString)                                                    # между словами в другом случае то пробелы тоже будут переводиться в элементы)
 
 def reAdder(text):
-    counter = 1   # конкретный счетчик количества элемента приписываемый в возвращаемое значние конкретного елемента
-    for i in range(len(text)):
-        for j in set(text):
-            if i+1 != len(text):                # устраняем ошибку выхода индексов за границы массива
-                if text[i] == text[i+1]:
-                    text.pop(i+1)
-                    text.insert((i+1),f"{text[i]}_{counter}")
-                    counter += 1
-            counter = 1
+    counter = 0   # конкретный счетчик количества элемента приписываемый в возвращаемое значние конкретного елемента
+    for i in set(text):    # для каждой буквы множества
+        for j in range(len(text)):       # для каждого индекса в диапазоне размера списка
+            if text[j] == i:
+                text.pop(j)
+                text.insert(j, f"{i}_{counter}")
+                counter += 1
+            if text[j] == (f"{i}_{0}"):      # лишняя "лапша" присвоения и забирания "_0", но пока не понял как изначально не присваивать первому элементу
+                text.pop(j)
+                text.insert(j, f"{i}")
+        counter = 0
     return text
 
-print(reAdder(userString))
+print(*reAdder(userString))   # символ (*) при принте открывает скобки у списка
 
 
 
