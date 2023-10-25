@@ -40,10 +40,22 @@ def CreateCheckingBase(amountOfRefrezherators):
     i = 0
     baseList = []
     while i < amountOfRefrezherators:
-        refrezherator = input("Введите серийный номер холодильника: ")
-        baseList.append(refrezherator)
-        i += 1
+        refrezherator = input("Введите серийный номер холодильника от 5 до 100 символов: ")
+        if len(refrezherator) >= 5 and len(refrezherator) < 100:
+            baseList.append(refrezherator)
+            i += 1
+        else:
+            refrezherator = input("Символов больше 100 или меньше 5. Введите серийный номер холодильника ещё раз: ")
     return baseList
 
 print(CreateCheckingBase(n))
 
+def sickDetecting(technicBase):
+    j = "anton"
+    for i in range(len(technicBase)):
+        x = 0  # индекс строки j
+        for k in technicBase[i]:
+            if k == j[x] and set(j).intersection(set(technicBase[i])):
+                x += 1
+                continue
+            else:
