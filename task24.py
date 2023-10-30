@@ -14,3 +14,26 @@ i ягод.
 заданной во входном файле грядки.
  4 -> 1 2 3 4 9
 """
+
+from random import randint # необходим модуль для функции рандомного заполнения
+n = int(input('Сколько кустов на грядке?: ')) # количество элементов в рандомном списке
+minRandBorder = int(input('какое минимальное значение элемента в диапазоне элементов вашего рандомного списка чисел?: ')) # минимум диапазона значений в списке
+maxRandBorder = int(input('какое максимальное значение элемента в диапазоне элементов вашего рандомного списка чисел?: ')) # максимум диапазона значений в списке
+urozhaySKustov = [] # создаем список для автозаполнения
+
+def autofill(amount, minBorder, maxBorder): # метод автозаполнения массива элементами: от min до max
+    if amount > 3 and minBorder >= 0 and maxBorder >= 0:
+        list_comprehension = [randint(minBorder,maxBorder) for i in range(abs(amount))] # взял по модулю на случай если клиент введёт значение < 0
+    else:
+        print("Кустов меньше 3 или количество ягод отрицательное")
+    return list_comprehension
+
+urozhaySKustov = autofill(n, minRandBorder, maxRandBorder)
+print(f'На каждом кустку кг урожая: {urozhaySKustov}')
+
+max_berries = 0
+for i in range(len(urozhaySKustov)):
+    berries = urozhaySKustov[i] + urozhaySKustov[i-1] + urozhaySKustov[i-2]
+    if berries > max_berries:
+        max_berries = berries
+print(f'Собирающий модуль за один круг способен собрать ягод в килограммах: {max_berries}')
