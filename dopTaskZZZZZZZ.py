@@ -49,7 +49,7 @@ def CreateCheckingBase(amountOfRefrezherators):    # метод формиров
             refrezherator = input("Символов больше 100 или меньше 5. Введите серийный номер холодильника ещё раз: ")
     return baseList
 
-base = CreateCheckingBase(n) # задаём "постоянную" переменную чтобы работать с заполненым списком т/к/ через методы будут новые автозаполнения.
+base = CreateCheckingBase(n) # задаём "постоянную" переменную чтобы работать с заполненым списком т/к/ через методы будут вызываться лишние ненужные инпуты.
 print(base)
 
 def itterateList(str1, str2):   # метод рекурсивного среза строки 
@@ -60,43 +60,19 @@ def itterateList(str1, str2):   # метод рекурсивного среза
             if str1[k] == str2[i]:           # если этот символ равен 1ому символу парсируемой строки
                 str1 = str1[(k+1):]          # присваиваем входной поисковой строке новый обрезанный от найденного элемента диапазон(срез)
                 i += 1                       # повышаем индекс парсируемой строки для поиска следующего элемента и обрезания      
-                break                        # без него будет индексрэйнджаут и ничего не будет работать
+                break                        # без него будет индексрэйнджаут и ничего не будет работать (потому что предыдущий цикл ещё 
+                                             # не докрутился, а на следующей иитерации у него уже срезало индексы в том в чем крутит)
             elif str1[k] == str2[(len(str2))-1]:  # если иттерации доходят до конечного символа
                 flag = True                       # возвращается флаг что операция парсинга одной строки в другой - возможна
             else:
                 continue
     return flag     
 
-def sickDetecting(technicBase, sick):
-    for i in range(len(technicBase)):
-        if itterateList(technicBase[i], sick) == True:
-            print(i+1)
+def sickDetecting(technicBase, sick):                    # метод определения зараженных индексов холодильников из проверяемой базы
+    for i in range(len(technicBase)):                    # счетчик по базе холодильников
+        if itterateList(technicBase[i], sick) == True:   # если в конкретном элементе базы парсируемое слово доходит до конца метода
+            print(i+1)                           # печатаем индекс этого элемента
+        else: continue  
 
 print(sickDetecting(base, virus))
 
-
-
-
-
-
-# def sickDetecting(technicBase): # метод поиска строки-вируса в каждом элементе списка(серийном номере холодильника)
-#     virus = list("anton")       # тот список/строка со значением индексов которого будем сравнивать значения символов строки серийного номера холодильника
-#     antiDot = []                
-#     for i in range(len(technicBase)):
-#         x = 0  # индекс строки virus
-#         for k in technicBase[i]:
-#             if k == virus[x] and set(virus).intersection(set(technicBase[i])):
-#                 antiDot.append(k)
-#                 x += 1
-#                 continue
-#             else:
-#                 x += 1
-#                 continue
-#         if str(antiDot) == str(virus):
-#             print(i)
-#         else:
-#             print("исправляй")
-#         antiDot = 0
-    
-# sickDetecting(base)
-        
