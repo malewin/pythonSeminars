@@ -45,6 +45,5 @@ async def transactions():
                                                                                                         # если выдаёт ошибку "lt not in db" - значит об этой транзакции лайтсервер уже не помнит
 
 
-
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(archive_ls_detecting())
