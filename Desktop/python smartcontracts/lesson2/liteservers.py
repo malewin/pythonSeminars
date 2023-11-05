@@ -24,7 +24,7 @@ async def archive_ls_detecting():               # метод опеределе�
         await client.init()
 
         try:
-            print(await client.lookup_block(-1, -9223372036854775808, random.randint(2, 4096)))
+            print(await client.lookup_block(-1, -9223372036854775808, random.randint(2, 4096))) # заимствовано с метода report_archival по пути гитхаб ton-http-api/ton-http-api/pyTON/worker.py
             print(index)
         except:
             pass
@@ -43,7 +43,6 @@ async def transactions():
 
     await client.get_transactions(account='EQAMoPBaaE_ud88pid9_AW7hjWVz6hWf0XwmJtAdSXq4putF', limit=2) # limit это количетсов транзакций в списке транзакций пр: 1-последняя, 2 - предпоследняя, 
                                                                                                         # если выдаёт ошибку "lt not in db" - значит об этой транзакции лайтсервер уже не помнит
-
 
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(archive_ls_detecting())
