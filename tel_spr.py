@@ -59,11 +59,12 @@ def workWithPhonebook():
         print("\n1. Добавить контакт")
         print("2. Изменить контакт")
         print("3. Удалить контакт")
-        print("4. Поиск контакта") 
-        print("5. Скопировать контакт из 1-ого справочника во 2-ой")
-        print("6. Показать контакты из 1-ого справочника")
-        print("7. Показать контакты из 2-ого справочника(копия)")
-        print("8. Выйти")
+        print("4. Поиск контакта из 1-ого списка") 
+        print("5. Поиск контакта из 2-ого списка") 
+        print("6. Скопировать контакт из 1-ого справочника во 2-ой")
+        print("7. Показать контакты из 1-ого справочника")
+        print("8. Показать контакты из 2-ого справочника(копия)")
+        print("9. Выйти")
 
         choice = input("Выберите пункт из меню (1/2/3/4/5/6/7/8): ")
 
@@ -89,23 +90,32 @@ def workWithPhonebook():
         elif choice == '4':
             searchingKey = input("Введите характеристику для поиска (lastName/firstName/middleName/phoneNumber): ")
             searchingValue = input("Введите значение для поиска: ")
-            results = searching(mainContacts, searchingKey, searchingValue)
-            if results:
+            results1 = searching(mainContacts, searchingKey, searchingValue)
+            if results1:
                 print("\nРезультаты поиска в 1-ом списке:")
-                show(results)
+                show(results1)
             else:
                 print("\nНичего не найдено.")
         elif choice == '5':
+            searchingKey = input("Введите характеристику для поиска (lastName/firstName/middleName/phoneNumber): ")
+            searchingValue = input("Введите значение для поиска: ")
+            results2 = searching(ostContacts, searchingKey, searchingValue)
+            if results2:
+                print("\nРезультаты поиска во 2-ом списке:")
+                show(results2)
+            else:
+                print("\nНичего не найдено.")
+        elif choice == '6':
             lineNumber = int(input("Введите номер копируемой строки из 1-ого списка: "))
             copy(mainContacts, ostContacts, lineNumber)
             saving(dublicateFile, ostContacts)
-        elif choice == '6':
+        elif choice == '7':
             print("\nКонтакты 1-ого списка:")
             show(mainContacts)
-        elif choice == '7':
+        elif choice == '8':
             print("\nКонтакты 2-ого списка:")
             show(ostContacts)
-        elif choice == '8':
+        elif choice == '9':
             break
         else:
             print("Что-то пошло не так... Попробуйте снова")
