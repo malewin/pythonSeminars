@@ -11,4 +11,6 @@ for i in range(len(data_list)):
         data_list[i] = 0
     else:
         data_list[i] = 1
+result = pd.DataFrame({'whoAmI': data_list})
 print(data_list)
+print(result)
